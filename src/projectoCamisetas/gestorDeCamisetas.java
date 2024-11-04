@@ -252,5 +252,6 @@ public class gestorDeCamisetas {
 		generarArchivofinal();
 		generarArchivoSql();
 		
+		
 	}
 }
