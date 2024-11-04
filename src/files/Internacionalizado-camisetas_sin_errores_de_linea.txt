@@ -1,0 +1,26 @@
+1,2904,verde,superdry,manga larga unisex,xxl
+2,2083,rojo,superdry,manga larga hombre,s/m
+3,1627,verde,zara,manga corta hombre,l/xl
+4,413,naranja,hacket,manga larga mujer,s/m
+5,2977,malva,banana blue,manga corta mujer,xs
+6,1635,gris,ralph lauren,manga larga unisex,m/l
+8,1584,cian,silbon,manga larga hombre,m/l
+9,446,lavanda,edmmond studios,manga corta mujer,xl
+10,2832,ocre,hacket,manga corta hombre,xxl
+12,2720,naranja,mango,manga larga unisex,xl
+13,300,zinc,silbon,manga larga hombre,xl
+14,738,purpura,banana blue,manga larga mujer,xl/xxl
+15,2239,zinc,mango,manga corta unisex,xs
+17,2006,ocre,desigual,manga corta unisex,xxl
+18,1446,morado,silbon,manga larga hombre,xxl
+19,2448,malva,jack & jones,manga corta mujer,xxl
+20,2501,ambar,120% lino,manga corta unisex,s/m
+21,2877,gris,napapijri,manga larga unisex,m/l
+22,2385,morado,dior,manga corta hombre,xxl
+23,1165,amarillo,hacket,manga larga unisex,m/l
+24,2495,morado,scotta 1985,manga corta unisex,m/l
+25,541,azul,the untouchables,manga larga unisex,xxl
+26,1298,morado,dior,manga larga hombre,s
+27,2379,lavanda,hacket,manga larga mujer,xs
+28,1388,ambar,edmmond studios,manga corta hombre,l/xl
+29,444,morado,the untouchables,manga corta unisex,s
