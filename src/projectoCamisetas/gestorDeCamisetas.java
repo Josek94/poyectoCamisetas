@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 
 public class gestorDeCamisetas {
 	
-	static Long contadorTotalDeCamisetas = 0L;
-	static Long contadorDeCamisetasMalas = 0L;
 	
 	
 	private static ArrayList<String> leerArchivo(String archivo) {
@@ -47,8 +45,6 @@ public class gestorDeCamisetas {
 			for(String linea : listaCamisetas) {
 				String[] campos = linea.split(",");
 				if(campos.length != 6) {
-					contadorTotalDeCamisetas++;
-					contadorDeCamisetasMalas++;
 					continue;
 				}
 				boolean estaVacio = false;
@@ -58,11 +54,8 @@ public class gestorDeCamisetas {
 					}
 				}
 				if(estaVacio) {
-					contadorTotalDeCamisetas++;
-					contadorDeCamisetasMalas++;
 					continue;
 				}
-				contadorTotalDeCamisetas++;
 				bw.append(linea);
 				bw.newLine();
 			}
@@ -71,29 +64,39 @@ public class gestorDeCamisetas {
 		}
 	}
 	
+	private static ArrayList<String> generarListaCamisetasMalas(ArrayList<String> listaCamisetas){
+		ArrayList<String> lista = new ArrayList<>();
+		for(String linea : listaCamisetas) {
+			String[] campos = linea.split(",");
+			if(campos.length != 6) {
+				lista.add(linea);
+			}
+			boolean estaVacio = false;
+			for(String campo : campos) {
+				if(campo.trim().isEmpty()) {
+					estaVacio = true;
+				}
+			}
+			if(estaVacio) {
+				lista.add(linea);
+			}
+
+		}
+		
+		return lista;
+		
+	}
+	
 	private static void generarReporteMalo(ArrayList<String> listaCamisetas) {
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter("src\\files\\camisetas_con_errores_de_linea.log"))){
+			ArrayList<String> listaMala = generarListaCamisetasMalas(listaCamisetas);
 			bw.append(String.format("Camisetas_con_errores_de_linea.log%n"
 					+ "Total lineas analizadas: %d%n"
 					+ "Total lineas eliminadas: %d%n%n"
-					+ "Las lineas eliminadas son: %n", contadorTotalDeCamisetas,contadorDeCamisetasMalas));
-			for(String linea : listaCamisetas) {
-				String[] campos = linea.split(",");
-				if(campos.length != 6) {
-					bw.append(linea);
-					bw.newLine();
-				}
-				boolean estaVacio = false;
-				for(String campo : campos) {
-					if(campo.trim().isEmpty()) {
-						estaVacio = true;
-					}
-				}
-				if(estaVacio) {
-					bw.append(linea);
-					bw.newLine();
-				}
-
+					+ "Las lineas eliminadas son: %n", listaCamisetas.size(),listaMala.size()));
+			for(String linea : listaMala) {
+				bw.append(linea);
+				bw.newLine();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -241,17 +244,20 @@ public class gestorDeCamisetas {
 		
 	}
 	
-	
-	
-	public static void main(String[] args) {
-		
-		generarReporteCompleto("camisetas_reducido.txt");
+	public static void generarTodosLosReportes() {
+		generarReporteCompleto("camisetas.txt");
 		reporteDeFrecuencias("camisetas_sin_errores_de_linea.txt", false);
 		internacionalizarDatos("camisetas_sin_errores_de_linea.txt");
 		reporteDeFrecuencias("camisetas_sin_errores_de_linea.txt", true);
 		generarArchivofinal();
 		generarArchivoSql();
-		
+	}
+	
+	
+	
+	public static void main(String[] args) {
+	
+		generarTodosLosReportes();
 		
 	}
 }
